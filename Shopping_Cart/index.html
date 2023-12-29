@@ -9,11 +9,13 @@
 <body>
 
 <div class="container">
-    <div class="product-image">
-        <img src="" alt="Product Image" id="productImage">
-    </div>
-    <div class="thumbnails" id="thumbnails">
-        <!-- Thumbnails will be dynamically added using JavaScript -->
+    <div class="product-section">
+        <div class="product-image">
+            <img src="" alt="Product Image" id="productImage">
+        </div>
+        <div class="thumbnails" id="thumbnails">
+            <!-- Thumbnails will be dynamically added using JavaScript -->
+        </div>
     </div>
     <div class="product-details">
         <h1 id="productVendor"></h1>
@@ -21,9 +23,13 @@
         <p id="comparePrice"></p>
         <p id="percentageOff"></p>
         <p id="price"></p>
-        <select id="colorSelector">
-            <!-- Color options will be dynamically added using JavaScript -->
-        </select>
+
+        <!-- Choose a Color Section -->
+        <div class="color-options">
+            <label for="colorSelector">Choose a Color:</label>
+            <div id="colorSwatches"></div>
+        </div>
+
         <select id="sizeSelector">
             <!-- Size options will be dynamically added using JavaScript -->
         </select>
