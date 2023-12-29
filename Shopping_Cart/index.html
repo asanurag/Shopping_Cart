@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Page</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="container">
+    <div class="product-image">
+        <img src="" alt="Product Image" id="productImage">
+    </div>
+    <div class="thumbnails" id="thumbnails">
+        <!-- Thumbnails will be dynamically added using JavaScript -->
+    </div>
+    <div class="product-details">
+        <h1 id="productVendor"></h1>
+        <h2 id="productTitle"></h2>
+        <p id="price"></p>
+        <p id="comparePrice"></p>
+        <p id="percentageOff"></p>
+        <select id="colorSelector">
+            <!-- Color options will be dynamically added using JavaScript -->
+        </select>
+        <select id="sizeSelector">
+            <!-- Size options will be dynamically added using JavaScript -->
+        </select>
+        <input type="number" id="quantitySelector" value="1" min="1">
+        <button id="addToCartBtn" onclick="addToCart()">Add to Cart</button>
+        <p id="addToCartMessage" style="display: none;"></p>
+        <p id="description"></p>
+    </div>
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
+
