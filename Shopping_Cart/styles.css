@@ -12,7 +12,7 @@ body {
     flex-wrap: wrap;
 }
 
-.product-image {
+.product-image img{
     flex: 1;
     width: 100%;
     max-width: 400px; /* Set the maximum width for the product image */
