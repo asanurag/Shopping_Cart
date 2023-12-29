@@ -1,20 +1,22 @@
-// Fetch product data from the provided API
-fetch('https://cdn.shopify.com/s/files/1/0564/3685/0790/files/singleProduct.json')
-    .then(response => response.json())
-    .then(data => {
-        // Populate the product details based on the fetched data
-        populateProductDetails(data.product);
-    })
-    .catch(error => console.error('Error fetching product data:', error));
-
 function populateProductDetails(productData) {
     // Add your code to populate the HTML elements with the product details
     document.getElementById('productImage').src = productData.images[0].src;
     document.getElementById('productVendor').innerText = productData.vendor;
     document.getElementById('productTitle').innerText = productData.title;
+
+    // Display original price
     document.getElementById('price').innerText = `Price: ${productData.price}`;
-    document.getElementById('comparePrice').innerText = `Compare at Price: ${productData.compare_at_price}`;
-    document.getElementById('percentageOff').innerText = `Percentage off: ${calculatePercentageOff(productData.price, productData.compare_at_price)}%`;
+
+    // Display discounted price and percentage off
+    const comparePriceElement = document.getElementById('comparePrice');
+    const discountedPrice = parseFloat(productData.compare_at_price.replace('$', '').replace(',', ''));
+    const percentageOff = calculatePercentageOff(productData.price, discountedPrice);
+
+    comparePriceElement.innerHTML = `Discounted Price: <span style="color: red;">${productData.compare_at_price}</span>`;
+    
+    const percentageOffElement = document.getElementById('percentageOff');
+    percentageOffElement.innerHTML = `(${percentageOff}% off)`;
+
     document.getElementById('description').innerHTML = productData.description;
 
     // Add color options
@@ -46,17 +48,4 @@ function populateProductDetails(productData) {
         });
         thumbnailsContainer.appendChild(img);
     });
-}
-
-function calculatePercentageOff(price, comparePrice) {
-    const percentageOff = ((comparePrice - price) / comparePrice) * 100;
-    return percentageOff.toFixed(2);
-}
-
-function addToCart() {
-    // Add your code to handle adding the product to the cart
-    // For example, you can display a confirmation message
-    const addToCartMessage = document.getElementById('addToCartMessage');
-    addToCartMessage.innerText = 'Product added to cart!';
-    addToCartMessage.style.display = 'block';
 }
