@@ -1,22 +1,48 @@
+// Fetch product data from the provided API
+fetch('https://cdn.shopify.com/s/files/1/0564/3685/0790/files/singleProduct.json')
+    .then(response => response.json())
+    .then(data => {
+        // Populate the product details based on the fetched data
+        populateProductDetails(data.product);
+    })
+    .catch(error => console.error('Error fetching product data:', error));
+
+function calculatePercentageOff(originalPrice, discountedPrice) {
+    const percentageOff = ((originalPrice - discountedPrice) / originalPrice) * 100;
+    return percentageOff.toFixed(2);
+}
+
+function addToCart() {
+    // Add your code to handle adding the product to the cart
+    // For example, you can display a confirmation message
+    const addToCartMessage = document.getElementById('addToCartMessage');
+    addToCartMessage.innerText = 'Product added to cart!';
+    addToCartMessage.style.display = 'block';
+}
+
+// Add the new function populateProductDetails here
 function populateProductDetails(productData) {
     // Add your code to populate the HTML elements with the product details
     document.getElementById('productImage').src = productData.images[0].src;
     document.getElementById('productVendor').innerText = productData.vendor;
     document.getElementById('productTitle').innerText = productData.title;
 
-    // Display original price
-    document.getElementById('price').innerText = `Price: ${productData.price}`;
+    // Display original price in blue and bold
+    const priceElement = document.getElementById('price');
+    priceElement.innerHTML = `<span style="color: Gray; font-weight: bold;">${productData.compare_at_price}</span>`;
 
     // Display discounted price and percentage off
     const comparePriceElement = document.getElementById('comparePrice');
-    const discountedPrice = parseFloat(productData.compare_at_price.replace('$', '').replace(',', ''));
-    const percentageOff = calculatePercentageOff(productData.price, discountedPrice);
+    const discountedPrice = parseFloat(productData.price.replace('$', '').replace(',', ''));
+    const percentageOff = calculatePercentageOff(parseFloat(productData.compare_at_price.replace('$', '').replace(',', '')), discountedPrice);
 
-    comparePriceElement.innerHTML = `Discounted Price: <span style="color: red;">${productData.compare_at_price}</span>`;
-    
+    comparePriceElement.innerHTML = `<span style="color: #5A0AC0; font-weight: bold;">${productData.price}</span>`;
+
+    // Display percentage off to the right of discounted price
     const percentageOffElement = document.getElementById('percentageOff');
     percentageOffElement.innerHTML = `(${percentageOff}% off)`;
 
+    // Use innerHTML for description to handle HTML content
     document.getElementById('description').innerHTML = productData.description;
 
     // Add color options
