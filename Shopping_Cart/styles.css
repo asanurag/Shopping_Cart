@@ -34,9 +34,6 @@ body {
 }
 
 /* Additional styling for the discounted price and percentage off */
-#comparePrice {
-    color: red;
-}
 
 #percentageOff {
     color: red;
