@@ -8,14 +8,17 @@ body {
     max-width: 1200px;
     margin: 0 auto;
     display: flex;
-    justify-content: space-around;
     flex-wrap: wrap;
 }
 
+.product-section {
+    display: flex;
+    flex-direction: column; /* Arrange children vertically */
+}
+
 .product-image img {
-    flex: 1;
     width: 100%;
-    max-width: 400px; /* Set the maximum width for the product image */
+    max-width: 400px;
 }
 
 .thumbnails {
@@ -31,12 +34,21 @@ body {
 
 .product-details {
     flex: 1;
+    margin-left: 20px;
 }
 
-/* Additional styling for the discounted price and percentage off */
+.color-options {
+    margin-top: 10px;
+}
+
+.color-swatch {
+    width: 30px;
+    height: 30px;
+    border: 2px solid #fff;
+    margin-right: 5px;
+    cursor: pointer;
+}
 
 #percentageOff {
     color: red;
 }
-
-/* Add your additional styling here */
