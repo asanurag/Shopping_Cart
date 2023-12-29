@@ -47,11 +47,25 @@ function populateProductDetails(productData) {
 
     // Add color options
     const colorSelector = document.getElementById('colorSelector');
+    const colorSwatchesContainer = document.getElementById('colorSwatches');
+    colorSwatchesContainer.innerHTML = ''; // Clear previous content
+
     productData.options.find(option => option.name === 'Color').values.forEach(color => {
+        const colorName = Object.keys(color)[0];
+        const colorCode = color[colorName];
+
         const option = document.createElement('option');
-        option.value = Object.keys(color)[0];
-        option.innerText = Object.keys(color)[0];
+        option.value = colorName;
+        option.innerText = colorName;
         colorSelector.appendChild(option);
+
+        const swatch = document.createElement('div');
+        swatch.className = 'color-swatch';
+        swatch.style.backgroundColor = colorCode;
+        swatch.title = colorName; // Tooltip with color name
+        swatch.addEventListener('click', () => handleColorSelection(colorName));
+
+        colorSwatchesContainer.appendChild(swatch);
     });
 
     // Add size options
@@ -65,6 +79,7 @@ function populateProductDetails(productData) {
 
     // Add thumbnails
     const thumbnailsContainer = document.getElementById('thumbnails');
+    thumbnailsContainer.innerHTML = ''; // Clear previous content
     productData.images.forEach((image, index) => {
         const img = document.createElement('img');
         img.src = image.src;
